@@ -1,9 +1,10 @@
 import os as myOS
 
 #Directory with stuff to be sorted
-unsorted_file_directory = str(r"c:\Users\Yan\Documents\codingExercises\Testfolder")
+unsorted_file_directory = str(r"c:\Users\Yan\Documents\codingExercises\FileSorter-1\Testfolder")
 #Path where sorted folders will go
-FolderDirectory = str(r"c:\Users\Yan\Documents\codingExercises\Testfolder\sortedFolders")
+sorted_directory = str(r"c:\Users\Yan\Documents\codingExercises\FileSorter-1\Testfolder\sortedFolders")
+counter_moved_files = 0
 
 def createfoldersforgivenextensions(origin_directory, destination_directory):
     extensions = set(getextensions(origin_directory))
@@ -16,7 +17,6 @@ def createfoldersforgivenextensions(origin_directory, destination_directory):
             print(extension + "  <-- Folder already exists!")
 
 
-
 def getextensions(directory):
      extensions = []
      for file in myOS.listdir(directory):
@@ -26,7 +26,15 @@ def getextensions(directory):
      return(extensions)
 
 def sortfilestofolders(origin_directory, destination_directory):
+    global counter_moved_files
     createfoldersforgivenextensions(origin_directory, destination_directory)
-    print("Still working on this one")
+    for file in myOS.listdir(origin_directory):
+        filename, fileextension = myOS.path.splitext(file)
+        if fileextension != "":
+            print("Origin: " + origin_directory + "\\" + file)
+            print("Destination: " + destination_directory + "\\" + fileextension + "\\" + file)
+            myOS.rename(origin_directory + "\\" + file, destination_directory + "\\" + fileextension + "\\" + file)
+            counter_moved_files = counter_moved_files + 1
 
-createfoldersforgivenextensions(unsorted_file_directory)
+sortfilestofolders(unsorted_file_directory, sorted_directory)
+print("Moved files: " + str(counter_moved_files))
