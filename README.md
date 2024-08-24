@@ -24,8 +24,8 @@ to have a self-incrementing Version Number you can use GitHub workflows
 
 <!-- TOC --><a name="constraints"></a>
 ## Constraints
-+ As of version `0.9.0`, there is no input for the target and source path, so you need to change the string in the file
-+ Also be wary of the fact there is no extensive error handling either, duplicate files may lead to unexpected results
++ File only works on the directory in which it is currently in
++ Not good error handling
 
 <!---
 after the 1. there are two spaces to tell the markdown interpreter to start a new line as an alternative you could also use the HTML tag "<br>"
