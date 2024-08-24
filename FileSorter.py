@@ -1,8 +1,7 @@
 import os as myOS
 
 #ToDo:
-#change string interpolation
-#If file already exists in destination then skip 
+#Make file executable whereever is is stored (create all the folders necessary)
 
 unsorted_file_directory = str(r"Testfolder")        	#Directory with stuff to be sorted
 sorted_directory = str(r"Testfolder\sortedFolders")     #Path where sorted folders will go
@@ -35,13 +34,14 @@ def sort_files_to_folders(origin_directory, destination_directory):
     create_folders_for_given_extensions(origin_directory, destination_directory)
     for file in myOS.listdir(origin_directory):
         name_and_extension = myOS.path.splitext(file)
-        if name_and_extension[1] != "":
-            #print("Origin: " + origin_directory + "\\" + file)
-            #print(f"Destination: {destination_directory} \\ {name_and_extension[1]} \\ {file}")
-            myOS.rename(f"{origin_directory}\{file}", f"{destination_directory}\{name_and_extension[1]}\{file}")
+        full_origin = str(f"{origin_directory}\{file}")
+        full_destination = str(f"{destination_directory}\{name_and_extension[1]}\{file}")
+        if name_and_extension[1] != "" and not myOS.path.exists(full_destination):
+            myOS.rename(full_origin, full_destination)
             counter_moved_files = counter_moved_files + 1
+        elif myOS.path.exists(full_destination):
+            print(f"{file} <-- already exists at destination!")
 
-print(myOS.getcwd())
 sort_files_to_folders(unsorted_file_directory, sorted_directory)
 print(f"Folders created: {str(counter_folders_created)}")
 print(f"Moved files: {str(counter_moved_files)}")
