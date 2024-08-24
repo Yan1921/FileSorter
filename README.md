@@ -33,11 +33,11 @@ also don't forget to change the git repo link to your own and do not forget the 
 -->
 <!-- TOC --><a name="how-to-use"></a>
 ## How to use
-1. clone the repository or download the FileSorter.py file  
+1. Clone the repository or download the FileSorter.py file  
   run `git clone https://github.com/Yan1921/FileSorter.git`
-2. Change the source and target path to something you want
-3. run the FileSorter.py
-4. ????
+2. Put the file in the directory you want to sort
+3. Run the FileSorter.py
+4. FileSorter.py creates a folder with subfolders which are named after the present file extensions and moves the files in their respective subfolders
 5. Profit
 
 <!-- TOC --><a name="error-handling"></a>
